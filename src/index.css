@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0A0A0A;
+  --surface: #121212;
+  --surface-hover: #1A1A1A;
+  --text-primary: #F5F5F0;
+  --text-secondary: #A5A5A0;
+  --text-muted: #6B6B67;
+  --accent: #C5A880;
+  --accent-hover: #D9BE96;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --badge-bg: rgba(197, 168, 128, 0.12);
+}
+
+[data-theme='light'] {
+  --bg: #F9F9F7;
+  --surface: #FFFFFF;
+  --surface-hover: #F4F3EE;
+  --text-primary: #141413;
+  --text-secondary: #666661;
+  --text-muted: #9B9B94;
+  --accent: #9A774B;
+  --accent-hover: #7F5E36;
+  --border: rgba(20, 20, 19, 0.12);
+  --border-subtle: rgba(20, 20, 19, 0.06);
+  --badge-bg: rgba(154, 119, 75, 0.1);
+}
+
+[data-theme='warm'] {
+  --bg: #12100E;
+  --surface: #1A1714;
+  --surface-hover: #231F1B;
+  --text-primary: #F6F3EE;
+  --text-secondary: #B5ADA2;
+  --text-muted: #7D756A;
+  --accent: #D4AF37;
+  --accent-hover: #E5C158;
+  --border: rgba(212, 175, 55, 0.18);
+  --border-subtle: rgba(212, 175, 55, 0.08);
+  --badge-bg: rgba(212, 175, 55, 0.12);
+}
+
+/* Typography tokens */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Base Body */
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Film grain subtle overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Editorial selection */
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Hide default cursor only if custom cursor is active on desktop pointer */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active a,
+  .custom-cursor-active button {
+    cursor: none;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
